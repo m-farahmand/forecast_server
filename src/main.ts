@@ -42,7 +42,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   );
   app.use(compression());
   app.use(morgan('combined'));
-
+  app.setGlobalPrefix('api');
   const reflector = app.get(Reflector);
 
   app.useGlobalFilters(
