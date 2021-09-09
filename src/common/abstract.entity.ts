@@ -5,7 +5,7 @@ import {
 } from 'typeorm';
 
 import { UtilsProvider } from '../providers/utils.provider';
-import type { AbstractDto } from './dto/abstract.dto';
+import { AbstractDto } from './dto/abstract.dto';
 
 export abstract class AbstractEntity<DTO extends AbstractDto = AbstractDto> {
   @PrimaryGeneratedColumn('uuid')
