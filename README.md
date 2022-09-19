@@ -1,43 +1,64 @@
-## Description
+# Awesome NestJS v7 Boilerplate
 
-Pop migration backend
+[![Awesome NestJS](https://img.shields.io/badge/Awesome-NestJS-blue.svg?longCache=true&style=flat-square)](https://github.com/juliandavidmr/awesome-nestjs)
 
-## Installation
+> This is an ever-evolving, very opinionated architecture and dev environment for new node projects using [NestJS](https://nestjs.com). Questions, feedback, and for now, even bikeshedding are welcome. 😄
 
-```bash
-$ npm install
-```
-
-## Running the app
+## Getting started
 
 ```bash
-# development
-$ npm run start
+# 1. Clone the repository or click on "Use this template" button.
+git clone https://github.com/NarHakobyan/awesome-nest-boilerplate.git my-new-project
 
-# watch mode
-$ npm run start:dev
+# 2. Enter your newly-cloned folder.
+cd my-new-project
 
-# production mode
-$ npm run start:prod
+# 3. Install dependencies. (Make sure yarn is installed: https://yarnpkg.com/lang/en/docs/install)
+yarn
+
+# 4. Run development server and open http://localhost:3000
+yarn start:dev
+
+# 5. Read the documentation linked below for "Setup and development".
 ```
 
-## Test
+## Features
 
-```bash
-# unit tests
-$ npm run test
+<dl>
+  <dt><b>Quick scaffolding</b></dt>
+  <dd>Create modules, services, controller - right from the CLI!</dd>
 
-# e2e tests
-$ npm run test:e2e
+  <dt><b>Instant feedback</b></dt>
+  <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes are reflected instantaneously.</dd>
 
-# test coverage
-$ npm run test:cov
-```
+  <dt><b>JWT Authentication</b></dt>
+  <dd>Installed and configured JWT authentication.</dd>
 
-## Support
+  <dt><b>Next generation Typescript</b></dt>
+  <dd>Always up to date typescript version.</dd>
 
-Project is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers.
+  <dt><b>Industry-standard routing</b></dt>
+  <dd>It's natural to want to add pages (e.g. /about`) to your application, and routing makes this possible.</dd>
 
-## License
+  <dt><b>Environment Configuration</b></dt>
+  <dd>development, staging and production environment configurations</dd>
 
-  Nest is [MIT licensed](LICENSE).
+  <dt><b>Swagger Api Documentation</b></dt>
+  <dd>Already integrated API documentation. To see all available endpoints visit http://localhost:3000/documentation</dd>
+
+  <dt><b>Linter</b></dt>  
+  <dd>eslint + prettier = ❤️</dd>
+</dl>
+
+## Documentation
+
+This project includes a `docs` folder with more details on:
+
+1.  [Setup and development](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/development.html#first-time-setup)
+1.  [Architecture](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/architecture.html)
+
+## Community
+
+For help, discussion about best practices, or any other conversation that would benefit from being searchable:
+
+[Discuss Awesome NestJS Boilerplate on GitHub](https://github.com/NarHakobyan/awesome-nest-boilerplate/discussions)

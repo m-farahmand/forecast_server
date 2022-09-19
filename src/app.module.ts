@@ -1,31 +1,45 @@
-import { APP_PIPE } from '@nestjs/core';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Module, ValidationPipe, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import './boilerplate.polyfill';
 
-import { AuthController } from './controllers/auth.controller';
-import { ConfigService } from './providers/config.service';
+import { MiddlewareConsumer, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { I18nJsonParser, I18nModule } from 'nestjs-i18n';
+import path from 'path';
+
 import { contextMiddleware } from './middlewares';
-import { CoreModule } from './core.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
+import { ApiConfigService } from './shared/services/api-config.service';
+import { SharedModule } from './shared/shared.module';
+import { WindModule } from './modules/wind/wind.module';
 
 @Module({
     imports: [
-        CoreModule.forRoot(),
-        TypeOrmModule.forRootAsync({
-            imports: [CoreModule],
-            useFactory: (configService: ConfigService) => configService.typeOrmConfig,
-            inject: [ConfigService],
+        AuthModule,
+        UserModule,
+        WindModule,
+        ConfigModule.forRoot({
+            isGlobal: true,
         }),
-    ],
-    controllers: [AuthController],
-    providers: [
-        {
-            provide: APP_PIPE,
-            useValue: new ValidationPipe({
-                whitelist: true, exceptionFactory: (errors) => {
-                errors[0].constraints.IsString = 'string';
+        TypeOrmModule.forRootAsync({
+            imports: [SharedModule],
+            useFactory: (configService: ApiConfigService) =>
+                configService.typeOrmConfig,
+            inject: [ApiConfigService],
+        }),
+        I18nModule.forRootAsync({
+            useFactory: (configService: ApiConfigService) => ({
+                fallbackLanguage: configService.fallbackLanguage,
+                parserOptions: {
+                    path: path.join(__dirname, '/i18n/'),
+                    watch: configService.isDevelopment,
                 },
             }),
-        },
+            imports: [SharedModule],
+            parser: I18nJsonParser,
+            inject: [ApiConfigService],
+        }),
     ],
 })
 export class AppModule implements NestModule {
